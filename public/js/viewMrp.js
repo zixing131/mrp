@@ -1,6 +1,6 @@
 
 let mrpFile = null;
-const midi = new WebAudioTinySynth();
+
 const f = GetQueryString('f');
 
 function isGzip(data, pos) {
@@ -59,9 +59,8 @@ const app = new Vue({
             const buf = mrp.readFileFromMrp(mrpFile, item.filePos, item.fileLen)
             const ext = item.filename.toLowerCase().substr(-4);
             switch (ext) {
-                case '.mid':
-                    midi.loadMIDI(buf.buffer);
-                    midi.playMIDI();
+                case '.mid': 
+                    play(buf.buffer);
                     break;
                 case '.mp3':
                 case '.wav': {
@@ -83,7 +82,7 @@ const app = new Vue({
             const ext = item.filename.toLowerCase().substr(-4);
             switch (ext) {
                 case '.mid':
-                    midi.stopMIDI();
+                    stop();
                     break;
                 case '.mp3':
                 case '.wav':

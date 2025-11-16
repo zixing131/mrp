@@ -7,9 +7,9 @@
     <title>view mrp</title>
     <script src="./dist/mrp.js"></script>
     <script src="./public/js/vue.js"></script>
-    <script src="./public/js/utils.js"></script>  
-    <script src="./vmrp_v1.0/webaudio.js"></script>
-    <script src="./vmrp_v1.0/webaudio-tinysynth.js"></script>
+    <script src="./public/js/utils.js"></script>   
+ 
+    <script src="./vmrp_v1.0/midiplayer.js"></script> 
     <style>
         html,
         body,
@@ -118,6 +118,11 @@
         <div style="margin-top: 8px;">
             <input type="file" id="files" @change="importFile($event)" style="display:none" />
             <button @click="importFileBtn()">导入文件</button>
+        </div>
+        <div id="placeholder">
+          <output class="spinner-border">
+            <span class="visually-hidden"></span>
+          </output>
         </div>
         <div id="info">
             <table>

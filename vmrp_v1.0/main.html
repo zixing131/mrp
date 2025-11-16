@@ -249,14 +249,17 @@
         #import:hover {
             background: #00dd00;
         }
-    </style>
-    <script src="./webaudio.js"></script>
-    <script src="./webaudio-tinysynth.js"></script>
+    </style>  
+    <script src="./midiplayer.js"></script> 
 </head>
 
 <body>
     <div id="main">
-    
+    <div id="placeholder">
+        <output class="spinner-border">
+        <span class="visually-hidden"></span>
+        </output>
+    </div>
     <div class="game-console">
         
         <div class="status-bar">
@@ -380,8 +383,7 @@
         const dialogInfo = document.getElementById('dialogInfo');
         const importBtn = document.getElementById('import');
         const inputFile = document.getElementById('files');
-        const canvas = document.getElementById('canvas');
-        const midi = new WebAudioTinySynth();
+        const canvas = document.getElementById('canvas'); 
         const MR_SOUND_MIDI = 0;
         const MR_SOUND_WAV = 1;
         const MR_SOUND_MP3 = 2;
@@ -424,9 +426,7 @@
         function js_playSound(type, data, dataLen, loop) {
             if (type == MR_SOUND_MIDI) {
                 const buf = Module.HEAPU8.slice(data, data + dataLen);
-                midi.setLoop(99999);
-                midi.loadMIDI(buf.buffer);
-                midi.playMIDI();
+                play(buf.buffer,loop); 
             } else {
                 console.log(arguments);
             }
@@ -435,7 +435,7 @@
 
         function js_stopSound(type) {
             if (type == MR_SOUND_MIDI) {
-                midi.stopMIDI();
+                stop();
             } else {
                 console.log(arguments);
             }
